@@ -1,16 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, CheckCircle2, Sparkles, Send } from 'lucide-react';
+import { X, CheckCircle2, Send, Star } from 'lucide-react';
 
 export default function ProjectInquiryModal({ isOpen, onClose }) {
-  const [step, setStep] = useState(1);
   const [selectedServices, setSelectedServices] = useState([]);
   const [budget, setBudget] = useState('$50k – $100k');
   const [timeline, setTimeline] = useState('1–2 Months');
   const [formData, setFormData] = useState({ name: '', email: '', company: '', details: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [stars, setStars] = useState([]);
 
-  if (!isOpen) return null;
+  // Mouse trail effect with stars
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const star = {
+        id: Date.now() + Math.random(),
+        x: e.clientX,
+        y: e.clientY,
+        opacity: 1,
+        size: Math.random() * 3 + 2, // Random size between 2-5px
+        lifetime: 1000 + Math.random() * 1500, // Random lifetime between 1-2.5s
+        createdAt: Date.now()
+      };
+
+      setStars(prev => [...prev, star]);
+
+      // Remove old stars
+      const now = Date.now();
+      setStars(prev => prev.filter(s => now - s.createdAt < s.lifetime));
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const services = [
     'AI & Automation',
@@ -24,6 +51,20 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   const budgets = ['< $25k', '$25k – $50k', '$50k – $100k', '$100k+'];
   const timelines = ['Immediate (< 2wks)', '1–2 Months', '3+ Months'];
 
+  // Helper to reset form data without closing modal
+  const clearFormData = () => {
+    setFormData({ name: '', email: '', company: '', details: '' });
+    setSelectedServices([]);
+    setBudget('$50k – $100k');
+    setTimeline('1–2 Months');
+  };
+
+  const resetForm = () => {
+    clearFormData();
+    setSubmitted(false);
+    onClose();
+  };
+
   const toggleService = (service) => {
     if (selectedServices.includes(service)) {
       setSelectedServices(selectedServices.filter((s) => s !== service));
@@ -32,17 +73,75 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim()) {
+      setError('Please fill in all required fields.');
+      return;
+    }
+    // Optional: validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Prepare data for Tally (map fields)
+      const tallyData = {
+        // Full Name
+        name: formData.name,
+        // Email
+        email: formData.email,
+        // Phone / WhatsApp - we don't have this field; maybe we can leave empty or add later?
+        // Since the existing form doesn't have phone, we'll omit or send empty.
+        phone: '',
+        // Company / Brand Name
+        company: formData.company,
+        // Service Required
+        services: selectedServices.join(', '),
+        // Budget
+        budget: budget,
+        // Timeline
+        timeline: timeline,
+        // Project Details
+        details: formData.details,
+        // Preferred Contact Method - not in form; we can default to Email or leave empty
+        preferredContact: 'Email',
+        // Referral Source (if available) - not in form
+        referral: '',
+      };
+
+      const TALLY_ENDPOINT = 'https://tally.so/r/jaAJOx';
+
+      const response = await fetch(TALLY_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(tallyData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Submission failed: ${response.status}`);
+      }
+
+      // Success
+      clearFormData();
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Tally submission error:', err);
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const resetForm = () => {
-    setStep(1);
-    setSelectedServices([]);
-    setSubmitted(false);
-    onClose();
-  };
+  if (!isOpen) return null;
 
   return (
     <AnimatePresence>
@@ -64,10 +163,29 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
           className="relative w-full max-w-2xl bg-[#0D0D14] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl z-10 my-auto text-white"
         >
+          {/* Star Field */}
+          <div className="pointer-events-none">
+            {stars.map(star => (
+              <Star
+                key={star.id}
+                className={`absolute left-[${star.x}px] top-[${star.y}px] text-polaris-blue/[${star.opacity}] w-[${star.size}px] h-[${star.size}px] `}
+                // We'll use inline styles for better control
+                style={{
+                  position: 'absolute',
+                  left: `${star.x}px`,
+                  top: `${star.y}px`,
+                  width: `${star.size}px`,
+                  height: `${star.size}px`,
+                  opacity: star.opacity,
+                  color: '#4F46E5' // polaris-blue
+                }}
+              />
+            ))}
+          </div>
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-polaris-blue animate-pulse"></span>
+              <Star className="w-4 h-4 text-polaris-blue animate-pulse" />
               <span className="text-xs font-mono text-polaris-blue uppercase tracking-widest">
                 START A PROJECT // POLARIS STUDIO
               </span>
@@ -82,7 +200,6 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
 
           {!submitted ? (
             <form onSubmit={handleSubmit} className="space-y-8">
-              
               {/* Step 1: Select Services */}
               <div className="space-y-4">
                 <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
@@ -192,26 +309,56 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                 ></textarea>
               </div>
 
+              {/* Honeypot field for spam protection */}
+              <input
+                type="text"
+                name="gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ position: 'absolute', left: '-9999px' }}
+                aria-hidden="true"
+              />
+
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-white text-black font-semibold text-sm flex items-center justify-center gap-2 hover:bg-polaris-blue hover:text-white transition-colors shadow-lg"
+                disabled={loading}
+                className={`w-full py-4 rounded-xl ${loading ? 'bg-white/[0.2]' : 'bg-white'} text-black font-semibold text-sm flex items-center justify-center gap-2 hover:bg-polaris-blue hover:text-white transition-colors shadow-lg ${
+                  loading ? 'cursor-not-allowed' : ''
+                }`}
               >
-                <span>Submit Project Inquiry</span>
-                <Send className="w-4 h-4" />
+                {loading ? (
+                  <>
+                    <span className="mr-2">Sending...</span>
+                    <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l4 2" />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    <span>Submit Project Inquiry</span>
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
 
-            </form>
+              {/* Error Message */}
+              {error && (
+                <div className="mt-4 p-3 bg-red-500/20 text-red-400 rounded-xl text-sm">
+                  {error}
+                </div>
+              )}
+
+              </form>
           ) : (
-            /* Confirmation State */
             <div className="py-12 text-center space-y-6">
               <div className="w-16 h-16 rounded-full bg-polaris-blue/20 text-polaris-blue flex items-center justify-center mx-auto border border-polaris-blue/40">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <div className="space-y-2">
-                <h3 className="font-display font-bold text-2xl text-white">Inquiry Received</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Project Request Sent Successfully!</h3>
                 <p className="text-sm text-polaris-muted max-w-md mx-auto leading-relaxed">
-                  Thank you, {formData.name || 'there'}! We have received your project inquiry. Our technical lead will review your requirements and respond within 24 hours.
+                  Thank you for reaching out. I've received your project request and will get back to you within 24 hours.
                 </p>
               </div>
               <button
