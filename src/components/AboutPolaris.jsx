@@ -58,7 +58,7 @@ export default function AboutPolaris({ onOpenInquiry }) {
           {/* Right Visual Stats Card */}
           <div className="lg:col-span-5 p-8 rounded-3xl bg-[#0D0D14] border border-white/10 space-y-8 shadow-2xl relative overflow-hidden">
             <div className="space-y-2">
-              <span className="text-xs font-mono text-polaris-blue">POLARIS STUDIO STANDARDS</span>
+              <span className="text-xs font-mono text-polaris-blue">POLARIS TECHNOLOGIES STANDARDS</span>
               <h3 className="font-display font-bold text-2xl text-white">Our Engineering Codex</h3>
             </div>
 

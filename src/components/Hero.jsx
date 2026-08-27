@@ -64,7 +64,7 @@ export default function Hero({ onOpenInquiry }) {
             >
               <div className="w-2 h-2 rounded-full bg-polaris-blue animate-pulse"></div>
               <span className="text-xs font-mono tracking-wider text-polaris-muted uppercase">
-                POLARIS DIGITAL ENGINEERING STUDIO
+                POLARIS DIGITAL ENGINEERING TECHNOLOGIES
               </span>
             </motion.div>
 

@@ -68,7 +68,7 @@ function App() {
         {/* 09 — Impact Metrics & Standards */}
         <ImpactMetrics />
 
-        {/* 10 — About Polaris Studio Narrative */}
+        {/* 10 — About Polaris Technologies Narrative */}
         <AboutPolaris onOpenInquiry={handleOpenInquiry} />
       </main>
 

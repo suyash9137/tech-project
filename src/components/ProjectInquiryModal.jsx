@@ -165,7 +165,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-polaris-blue animate-pulse" />
               <span id="modal-title" className="text-xs font-mono text-polaris-blue uppercase tracking-widest">
-                START A PROJECT &bull; POLARIS STUDIO
+                START A PROJECT &bull; POLARIS TECHNOLOGIES
               </span>
             </div>
             <button
@@ -427,7 +427,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               </div>
               <div className="space-y-3">
                 <h3 className="font-display font-bold text-2xl text-white">
-                  Thanks for reaching out to Polaris Studio! 🚀
+                  Thanks for reaching out to Polaris Technologies! 🚀
                 </h3>
                 <p className="text-sm text-polaris-muted max-w-md mx-auto leading-relaxed font-sans">
                   We've received your project inquiry. Our team will review your requirements and contact you shortly.
