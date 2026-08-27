@@ -35,8 +35,6 @@ function App() {
       {/* Global Scroll Progress Indicator */}
       <ScrollProgress />
 
-      {/* Magnetic Custom Cursor */}
-      <CustomCursor />
 
       {/* Header & Micro Announcement Bar */}
       <Header onOpenInquiry={handleOpenInquiry} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, Send, Star } from 'lucide-react';
 
@@ -20,30 +20,6 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [stars, setStars] = useState([]);
-
-  // Mouse trail effect with stars
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const star = {
-        id: Date.now() + Math.random(),
-        x: e.clientX,
-        y: e.clientY,
-        opacity: 1,
-        size: Math.random() * 3 + 2,
-        lifetime: 1000 + Math.random() * 1500,
-        createdAt: Date.now()
-      };
-
-      setStars(prev => [...prev, star]);
-
-      const now = Date.now();
-      setStars(prev => prev.filter(s => now - s.createdAt < s.lifetime));
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const services = [
     'AI & Automation',
@@ -91,7 +67,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   /**
    * Submits form data to Tally endpoint (https://tally.so/r/jaAJOx) in the background
    * without redirecting the user or requiring a backend server.
-   * Tally will automatically pass the submission to the connected Notion database.
+   * Tally automatically passes the submission to the connected Notion database.
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -148,7 +124,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
       hiddenIframe.style.display = 'none';
       document.body.appendChild(hiddenIframe);
 
-      // Create a hidden form targetting the background iframe
+      // Create a hidden form targeting the background iframe
       const form = document.createElement('form');
       form.action = TALLY_ENDPOINT;
       form.method = 'POST';
@@ -221,31 +197,12 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
           className="relative w-full max-w-2xl bg-[#0D0D14] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl z-10 my-auto text-white"
         >
-          {/* Star Field */}
-          <div className="pointer-events-none">
-            {stars.map(star => (
-              <Star
-                key={star.id}
-                className="absolute text-polaris-blue"
-                style={{
-                  position: 'absolute',
-                  left: `${star.x}px`,
-                  top: `${star.y}px`,
-                  width: `${star.size}px`,
-                  height: `${star.size}px`,
-                  opacity: star.opacity,
-                  color: '#4F46E5'
-                }}
-              />
-            ))}
-          </div>
-
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
             <div className="flex items-center gap-2">
               <Star className="w-4 h-4 text-polaris-blue animate-pulse" />
               <span className="text-xs font-mono text-polaris-blue uppercase tracking-widest">
-                START A PROJECT // POLARIS STUDIO
+                START A PROJECT &bull; POLARIS STUDIO
               </span>
             </div>
             <button
@@ -261,7 +218,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               {/* Step 1: Select Services */}
               <div className="space-y-4">
                 <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
-                  01 // WHAT WOULD YOU LIKE TO BUILD? (SELECT ALL THAT APPLY)
+                  01 &bull; WHAT WOULD YOU LIKE TO BUILD? (SELECT ALL THAT APPLY)
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {services.map((service) => {
@@ -287,7 +244,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
-                    02 // ESTIMATED BUDGET
+                    02 &bull; ESTIMATED BUDGET
                   </label>
                   <div className="space-y-2">
                     {budgets.map((b) => (
@@ -308,7 +265,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
 
                 <div className="space-y-3">
                   <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
-                    03 // DESIRED TIMELINE
+                    03 &bull; DESIRED TIMELINE
                   </label>
                   <div className="space-y-2">
                     {timelines.map((t) => (
@@ -331,7 +288,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               {/* Step 3: Contact Inputs */}
               <div className="space-y-4 pt-4 border-t border-white/10">
                 <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
-                  04 // YOUR CONTACT DETAILS
+                  04 &bull; YOUR CONTACT DETAILS
                 </label>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <input
