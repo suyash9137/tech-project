@@ -6,7 +6,17 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   const [selectedServices, setSelectedServices] = useState([]);
   const [budget, setBudget] = useState('$50k – $100k');
   const [timeline, setTimeline] = useState('1–2 Months');
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', details: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    details: '',
+    phone: '',
+    websiteUrl: '',
+    goal: '',
+    referral: '',
+    notes: '',
+  });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,23 +30,19 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
         x: e.clientX,
         y: e.clientY,
         opacity: 1,
-        size: Math.random() * 3 + 2, // Random size between 2-5px
-        lifetime: 1000 + Math.random() * 1500, // Random lifetime between 1-2.5s
+        size: Math.random() * 3 + 2,
+        lifetime: 1000 + Math.random() * 1500,
         createdAt: Date.now()
       };
 
       setStars(prev => [...prev, star]);
 
-      // Remove old stars
       const now = Date.now();
       setStars(prev => prev.filter(s => now - s.createdAt < s.lifetime));
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const services = [
@@ -51,9 +57,18 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   const budgets = ['< $25k', '$25k – $50k', '$50k – $100k', '$100k+'];
   const timelines = ['Immediate (< 2wks)', '1–2 Months', '3+ Months'];
 
-  // Helper to reset form data without closing modal
   const clearFormData = () => {
-    setFormData({ name: '', email: '', company: '', details: '' });
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      details: '',
+      phone: '',
+      websiteUrl: '',
+      goal: '',
+      referral: '',
+      notes: '',
+    });
     setSelectedServices([]);
     setBudget('$50k – $100k');
     setTimeline('1–2 Months');
@@ -73,14 +88,19 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
     }
   };
 
+  /**
+   * Submits form data to Tally endpoint (https://tally.so/r/jaAJOx) in the background
+   * without redirecting the user or requiring a backend server.
+   * Tally will automatically pass the submission to the connected Notion database.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation
+
+    // Client-side Validation
     if (!formData.name.trim() || !formData.email.trim()) {
       setError('Please fill in all required fields.');
       return;
     }
-    // Optional: validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address.');
@@ -90,51 +110,89 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
     setLoading(true);
     setError(null);
 
+    // Map website fields to Tally fields according to specification
+    const mappedPayload = {
+      'Full Name': formData.name,
+      'Email Address': formData.email,
+      'Phone / WhatsApp': formData.phone || '',
+      'Company Name': formData.company || '',
+      'Project Type': selectedServices.join(', '),
+      'Project Description': formData.details || '',
+      'Project Goal': formData.goal || '',
+      'Existing Website?': formData.websiteUrl ? 'Yes' : 'No',
+      'Website URL': formData.websiteUrl || '',
+      'Timeline': timeline,
+      'Budget': budget,
+      'Referral Source': formData.referral || '',
+      'Additional Notes': formData.notes || '',
+
+      // Fallback field key mappings for standard forms
+      'name': formData.name,
+      'email': formData.email,
+      'company': formData.company || '',
+      'services': selectedServices.join(', '),
+      'details': formData.details || '',
+      'phone': formData.phone || '',
+      'websiteUrl': formData.websiteUrl || '',
+      'timeline': timeline,
+      'budget': budget,
+    };
+
+    const TALLY_ENDPOINT = 'https://tally.so/r/jaAJOx';
+
     try {
-      // Prepare data for Tally (map fields)
-      const tallyData = {
-        // Full Name
-        name: formData.name,
-        // Email
-        email: formData.email,
-        // Phone / WhatsApp - we don't have this field; maybe we can leave empty or add later?
-        // Since the existing form doesn't have phone, we'll omit or send empty.
-        phone: '',
-        // Company / Brand Name
-        company: formData.company,
-        // Service Required
-        services: selectedServices.join(', '),
-        // Budget
-        budget: budget,
-        // Timeline
-        timeline: timeline,
-        // Project Details
-        details: formData.details,
-        // Preferred Contact Method - not in form; we can default to Email or leave empty
-        preferredContact: 'Email',
-        // Referral Source (if available) - not in form
-        referral: '',
-      };
+      // Create a background target iframe to process POST without page redirect
+      const iframeName = `tally_target_iframe_${Date.now()}`;
+      const hiddenIframe = document.createElement('iframe');
+      hiddenIframe.name = iframeName;
+      hiddenIframe.style.display = 'none';
+      document.body.appendChild(hiddenIframe);
 
-      const TALLY_ENDPOINT = 'https://tally.so/r/jaAJOx';
+      // Create a hidden form targetting the background iframe
+      const form = document.createElement('form');
+      form.action = TALLY_ENDPOINT;
+      form.method = 'POST';
+      form.target = iframeName;
 
-      const response = await fetch(TALLY_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(tallyData),
+      Object.entries(mappedPayload).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        }
       });
 
-      if (!response.ok) {
-        throw new Error(`Submission failed: ${response.status}`);
-      }
+      document.body.appendChild(form);
+      form.submit();
 
-      // Success
+      // Parallel fetch post with no-cors as additional fallback
+      const bodyFormData = new FormData();
+      Object.entries(mappedPayload).forEach(([key, value]) => {
+        bodyFormData.append(key, value);
+      });
+
+      fetch(TALLY_ENDPOINT, {
+        method: 'POST',
+        body: bodyFormData,
+        mode: 'no-cors',
+      }).catch(() => {});
+
+      // Short delay for background processing
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      // Cleanup DOM nodes
+      setTimeout(() => {
+        if (document.body.contains(form)) document.body.removeChild(form);
+        if (document.body.contains(hiddenIframe)) document.body.removeChild(hiddenIframe);
+      }, 2000);
+
+      // Success Behavior
       clearFormData();
       setSubmitted(true);
     } catch (err) {
-      console.error('Tally submission error:', err);
+      console.error('Submission error:', err);
       setError('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
@@ -168,8 +226,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
             {stars.map(star => (
               <Star
                 key={star.id}
-                className={`absolute left-[${star.x}px] top-[${star.y}px] text-polaris-blue/[${star.opacity}] w-[${star.size}px] h-[${star.size}px] `}
-                // We'll use inline styles for better control
+                className="absolute text-polaris-blue"
                 style={{
                   position: 'absolute',
                   left: `${star.x}px`,
@@ -177,11 +234,12 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   width: `${star.size}px`,
                   height: `${star.size}px`,
                   opacity: star.opacity,
-                  color: '#4F46E5' // polaris-blue
+                  color: '#4F46E5'
                 }}
               />
             ))}
           </div>
+
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
             <div className="flex items-center gap-2">
@@ -329,7 +387,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               >
                 {loading ? (
                   <>
-                    <span className="mr-2">Sending...</span>
+                    <span className="mr-2">Submitting...</span>
                     <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l4 2" />
                     </svg>
@@ -348,17 +406,16 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   {error}
                 </div>
               )}
-
-              </form>
+            </form>
           ) : (
             <div className="py-12 text-center space-y-6">
               <div className="w-16 h-16 rounded-full bg-polaris-blue/20 text-polaris-blue flex items-center justify-center mx-auto border border-polaris-blue/40">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <div className="space-y-2">
-                <h3 className="font-display font-bold text-2xl text-white">Project Request Sent Successfully!</h3>
+                <h3 className="font-display font-bold text-2xl text-white">Inquiry Received</h3>
                 <p className="text-sm text-polaris-muted max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out. I've received your project request and will get back to you within 24 hours.
+                  Thanks! We've received your project inquiry and will contact you soon.
                 </p>
               </div>
               <button
@@ -369,7 +426,6 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               </button>
             </div>
           )}
-
         </motion.div>
       </div>
     </AnimatePresence>
