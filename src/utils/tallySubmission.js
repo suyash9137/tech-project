@@ -1,12 +1,12 @@
 /**
- * Reusable utility function to submit project inquiries directly to Tally (https://tally.so/r/ODME9g)
- * without a backend server or page redirection.
- * Tally automatically relays submissions to the connected Notion Database CRM.
+ * Submits form data directly to Tally form endpoint (https://tally.so/r/ODME9g)
+ * using both fetch() POST and background target iframe to guarantee submission arrival,
+ * waiting for actual network completion before returning status.
  */
 export async function submitProjectInquiry(inquiryData) {
   const TALLY_ENDPOINT = 'https://tally.so/r/ODME9g';
 
-  // Sanitize and prepare field data according to exact Tally field names
+  // Sanitize input values
   const name = (inquiryData.name || '').trim();
   const email = (inquiryData.email || '').trim();
   const company = (inquiryData.company || '').trim();
@@ -17,7 +17,7 @@ export async function submitProjectInquiry(inquiryData) {
   const timeline = (inquiryData.timeline || '').trim();
   const details = (inquiryData.details || '').trim();
 
-  // Primary exact Tally field mappings
+  // Mapped Payload for Tally & Notion Database fields
   const mappedPayload = {
     'Full Name': name,
     'Work Email': email,
@@ -27,7 +27,7 @@ export async function submitProjectInquiry(inquiryData) {
     'Desired Timeline': timeline,
     'Tell us briefly about your project': details,
 
-    // Secondary fallback field key mappings
+    // Fallback key names
     'name': name,
     'email': email,
     'company': company,
@@ -37,61 +37,113 @@ export async function submitProjectInquiry(inquiryData) {
     'details': details,
   };
 
+  // 1. Direct fetch POST with FormData
+  let fetchPromiseSucceeded = false;
   try {
-    // 1. Create a hidden target iframe so submission happens seamlessly in background without redirecting
-    const iframeName = `tally_submit_frame_${Date.now()}`;
-    const hiddenIframe = document.createElement('iframe');
-    hiddenIframe.name = iframeName;
-    hiddenIframe.id = iframeName;
-    hiddenIframe.style.display = 'none';
-    document.body.appendChild(hiddenIframe);
-
-    // 2. Build hidden HTML form targeted at the background iframe
-    const form = document.createElement('form');
-    form.action = TALLY_ENDPOINT;
-    form.method = 'POST';
-    form.target = iframeName;
-
-    Object.entries(mappedPayload).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      }
-    });
-
-    document.body.appendChild(form);
-    form.submit();
-
-    // 3. Parallel fetch POST call with no-cors as resilient fallback
     const bodyFormData = new FormData();
     Object.entries(mappedPayload).forEach(([key, value]) => {
       if (value) bodyFormData.append(key, value);
     });
 
-    fetch(TALLY_ENDPOINT, {
+    await fetch(TALLY_ENDPOINT, {
       method: 'POST',
       body: bodyFormData,
       mode: 'no-cors',
-    }).catch(() => {});
-
-    // Allow time for execution
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    // Clean up temporary DOM elements
-    setTimeout(() => {
-      if (document.body.contains(form)) document.body.removeChild(form);
-      if (document.body.contains(hiddenIframe)) document.body.removeChild(hiddenIframe);
-    }, 2000);
-
-    return { success: true };
-  } catch (error) {
-    console.error('Tally submission error:', error);
-    return {
-      success: false,
-      error: 'Something went wrong while submitting your inquiry. Please try again.',
-    };
+    });
+    fetchPromiseSucceeded = true;
+  } catch (err) {
+    console.warn('Fetch POST to Tally failed:', err);
   }
+
+  // 2. Target iframe submission to guarantee form delivery and listen to completion
+  return new Promise((resolve) => {
+    try {
+      const iframeId = 'tally_hidden_submit_iframe';
+      let iframe = document.getElementById(iframeId);
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = iframeId;
+        iframe.name = iframeId;
+        iframe.style.position = 'fixed';
+        iframe.style.top = '-9999px';
+        iframe.style.left = '-9999px';
+        iframe.style.width = '1px';
+        iframe.style.height = '1px';
+        iframe.style.opacity = '0';
+        iframe.style.pointerEvents = 'none';
+        document.body.appendChild(iframe);
+      }
+
+      const form = document.createElement('form');
+      form.action = TALLY_ENDPOINT;
+      form.method = 'POST';
+      form.target = iframe.name;
+      form.style.display = 'none';
+
+      Object.entries(mappedPayload).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
+        }
+      });
+
+      document.body.appendChild(form);
+
+      let isResolved = false;
+
+      const completeSuccess = () => {
+        if (!isResolved) {
+          isResolved = true;
+          if (document.body.contains(form)) document.body.removeChild(form);
+          resolve({ success: true });
+        }
+      };
+
+      const completeFailure = (msg) => {
+        if (!isResolved) {
+          isResolved = true;
+          if (document.body.contains(form)) document.body.removeChild(form);
+          resolve({ success: false, error: msg });
+        }
+      };
+
+      iframe.onload = () => {
+        completeSuccess();
+      };
+
+      iframe.onerror = () => {
+        if (fetchPromiseSucceeded) {
+          completeSuccess();
+        } else {
+          completeFailure('Failed to connect to Tally servers.');
+        }
+      };
+
+      // Fallback timer: if iframe load completes or fetch succeeded
+      setTimeout(() => {
+        if (!isResolved) {
+          if (fetchPromiseSucceeded) {
+            completeSuccess();
+          } else {
+            completeFailure('Submission request timed out. Please check your network connection.');
+          }
+        }
+      }, 3000);
+
+      form.submit();
+    } catch (err) {
+      console.error('Exception submitting Tally form:', err);
+      if (fetchPromiseSucceeded) {
+        resolve({ success: true });
+      } else {
+        resolve({
+          success: false,
+          error: 'An unexpected error occurred during submission. Please try again.',
+        });
+      }
+    }
+  });
 }

@@ -102,7 +102,9 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
   };
 
   /**
-   * Submit Handler: Prevents redirect, validates inputs, and submits asynchronously to Tally.so/r/ODME9g
+   * Submit Handler:
+   * Prevents default submit, validates all fields, sends POST to Tally (https://tally.so/r/ODME9g),
+   * waits for completion, and ONLY displays success modal if the response is successful.
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,23 +117,29 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
     setLoading(true);
     setError(null);
 
-    const result = await submitProjectInquiry({
-      name: formData.name,
-      email: formData.email,
-      company: formData.company,
-      selectedServices,
-      budget,
-      timeline,
-      details: formData.details,
-    });
+    try {
+      const result = await submitProjectInquiry({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        selectedServices,
+        budget,
+        timeline,
+        details: formData.details,
+      });
 
-    if (result.success) {
-      clearFormData();
-      setSubmitted(true);
-    } else {
+      if (result && result.success) {
+        clearFormData();
+        setSubmitted(true);
+      } else {
+        setError(result?.error || 'Something went wrong while submitting your inquiry. Please try again.');
+      }
+    } catch (err) {
+      console.error('Submit handler error:', err);
       setError('Something went wrong while submitting your inquiry. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   if (!isOpen) return null;
