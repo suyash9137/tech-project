@@ -17,7 +17,7 @@ export default function SelectedWork({ onOpenInquiry }) {
       featured: true,
       shortDescription: 'Autonomous AI multi-agent orchestration platform processing high-volume financial document workflows with sub-second extraction accuracy.',
       fullDescription: 'Aether AI is a next-generation enterprise multi-agent system designed for automated document processing, invoice reconciliation, and automated decision-making across distributed financial institutions.',
-      gradient: 'from-polaris-blue/30 via-indigo-950/40 to-black',
+      gradient: 'from-[var(--primary-data)]/30 via-[var(--primary-black)]/40 to-[var(--primary-black)]',
       impact: '+64% Operational Efficiency',
       services: ['AI Agents', 'LLM RAG Pipeline', 'React SaaS', 'Python Microservices'],
       metrics: [
@@ -44,7 +44,7 @@ export default function SelectedWork({ onOpenInquiry }) {
       featured: false,
       shortDescription: 'Real-time financial analytics dashboard and multi-tenant SaaS terminal engineered for algorithmic trading firms.',
       fullDescription: 'Vanguard SaaS provides real-time latency-critical analytics, portfolio risk modeling, and automated hedging execution for global liquidity managers.',
-      gradient: 'from-polaris-cyan/30 via-teal-950/40 to-black',
+      gradient: 'from-[var(--primary-circuit)]/30 via-[var(--primary-black)]/40 to-[var(--primary-black)]',
       impact: '$120M+ Daily Transacted Volume',
       services: ['Full-Stack SaaS', 'WebSockets', 'Tailwind Design System', 'Go API Engine'],
       metrics: [
@@ -71,7 +71,7 @@ export default function SelectedWork({ onOpenInquiry }) {
       featured: false,
       shortDescription: 'Editorial digital experience showcasing quantum-safe cryptographic infrastructure with immersive 3D shaders.',
       fullDescription: 'Krypton Labs required a Framer-grade, high-end digital web experience that communicated technical credibility to enterprise buyers while commanding modern aesthetic authority.',
-      gradient: 'from-blue-600/30 via-slate-900/40 to-black',
+      gradient: 'from-[var(--primary-data)]/30 via-[var(--primary-slate)]/40 to-[var(--primary-black)]',
       impact: '3.2x Lead Conversion Growth',
       services: ['Web Architecture', 'Three.js / WebGL', 'Framer Motion', 'Editorial Typography'],
       metrics: [
@@ -98,7 +98,7 @@ export default function SelectedWork({ onOpenInquiry }) {
       featured: true,
       shortDescription: 'Bespoke business intelligence pipeline integrating machine learning models with automated executive reporting.',
       fullDescription: 'Nova Core unifies enterprise data sources across ERP, CRM, and analytics endpoints into an automated insight engine.',
-      gradient: 'from-emerald-600/30 via-sky-950/40 to-black',
+      gradient: 'from-[var(--primary-signal)]/30 via-[var(--primary-muted)]/40 to-[var(--primary-black)]',
       impact: '10x Faster Executive Reporting',
       services: ['Custom Microservices', 'Data Pipeline', 'ML Predictive Analytics', 'API Gateway'],
       metrics: [
@@ -119,7 +119,7 @@ export default function SelectedWork({ onOpenInquiry }) {
   ];
 
   return (
-    <section id="work" className="py-28 px-4 sm:px-8 relative bg-[#060608]">
+    <section id="work" className="py-28 px-4 sm:px-8 relative bg-[var(--primary-black)]">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Animated Section Header */}
@@ -139,32 +139,32 @@ export default function SelectedWork({ onOpenInquiry }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            onClick={() => setSelectedProject(projects[0])}
-            className="group cursor-pointer rounded-3xl bg-[#0D0D14] border border-white/10 overflow-hidden hover:border-polaris-blue/50 transition-all duration-500 shadow-2xl grid lg:grid-cols-12 items-stretch"
+            onClick={() => { console.log('Clicked project 01'); setSelectedProject(projects[0]); }}
+            className="group cursor-pointer rounded-3xl bg-[var(--primary-black)] border border-[var(--primary-border)]/10 overflow-hidden hover:border-[var(--primary-circuit)]/50 transition-all duration-500 shadow-2xl grid lg:grid-cols-12 items-stretch"
           >
             {/* Visual Area */}
             <div className={`lg:col-span-7 h-72 lg:h-auto bg-gradient-to-br ${projects[0].gradient} p-8 flex flex-col justify-between relative overflow-hidden`}>
               <div className="flex items-center justify-between relative z-10">
-                <span className="text-xs font-mono tracking-widest text-polaris-cyan bg-black/60 px-3.5 py-1 rounded-full border border-white/10 backdrop-blur-md">
+                <span className="text-xs font-mono tracking-widest text-[var(--primary-circuit)] bg-[var(--primary-black)]/60 px-3.5 py-1 rounded-full border border-[var(--primary-border)] backdrop-blur-md">
                   {projects[0].category}
                 </span>
-                <span className="text-xs font-mono text-white/60">
+                <span className="text-xs font-mono text-[var(--primary-text)]/60">
                   {projects[0].year}
                 </span>
               </div>
 
               <div className="relative z-10 space-y-2 my-auto py-6">
-                <span className="text-xs font-mono text-polaris-blue tracking-widest uppercase">FEATURED CASE STUDY</span>
-                <h3 className="font-display font-bold text-2xl sm:text-4xl text-white group-hover:text-polaris-cyan transition-colors">
+                <span className="text-xs font-mono text-[var(--primary-circuit)] tracking-widest uppercase">FEATURED CASE STUDY</span>
+                <h3 className="font-display font-bold text-2xl sm:text-4xl text-[var(--primary-text)] group-hover:text-[var(--primary-circuit)] transition-colors">
                   {projects[0].title}
                 </h3>
               </div>
 
               <div className="flex items-center justify-between relative z-10">
-                <span className="text-xs font-mono text-white/90 bg-white/10 px-3 py-1.5 rounded-lg border border-white/20 backdrop-blur-md">
+                <span className="text-xs font-mono text-[var(--primary-text)]/90 bg-[var(--primary-black)]/10 px-3 py-1.5 rounded-lg border border-[var(--primary-border)] backdrop-blur-md">
                   {projects[0].impact}
                 </span>
-                <div className="p-3 rounded-full bg-white text-black opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1">
+                <div className="p-3 rounded-full bg-[var(--primary-black)] text-[var(--primary-text)] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
               </div>
@@ -173,25 +173,25 @@ export default function SelectedWork({ onOpenInquiry }) {
             {/* Content Area */}
             <div className="lg:col-span-5 p-8 flex flex-col justify-between space-y-6">
               <div className="space-y-4">
-                <div className="text-xs font-mono text-polaris-muted">CLIENT: {projects[0].client}</div>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <div className="text-xs font-mono text-[var(--primary-text)]/60">CLIENT: {projects[0].client}</div>
+                <p className="text-sm text-[var(--primary-text)]/80 leading-relaxed">
                   {projects[0].fullDescription}
                 </p>
               </div>
 
               {/* Metrics Preview */}
-              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[var(--primary-border)]/10">
                 {projects[0].metrics.slice(0, 2).map((m, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                    <div className="text-xl font-display font-bold text-polaris-cyan">{m.value}</div>
-                    <div className="text-[10px] font-mono text-polaris-muted">{m.label}</div>
+                  <div key={i} className="p-3 rounded-xl bg-[var(--primary-black)]/10 border border-[var(--primary-border)]/20">
+                    <div className="text-xl font-display font-bold text-[var(--primary-circuit)]">{m.value}</div>
+                    <div className="text-[10px] font-mono text-[var(--primary-text)]/60">{m.label}</div>
                   </div>
                 ))}
               </div>
 
               <div className="pt-2 flex flex-wrap gap-2">
                 {projects[0].services.map((service, i) => (
-                  <span key={i} className="text-[11px] font-mono text-white/70 bg-white/[0.04] px-3 py-1 rounded-md border border-white/[0.06]">
+                  <span key={i} className="text-[11px] font-mono text-[var(--primary-text)]/70 bg-[var(--primary-black)]/10 px-3 py-1 rounded-md border border-[var(--primary-border)]/20">
                     {service}
                   </span>
                 ))}
@@ -209,26 +209,26 @@ export default function SelectedWork({ onOpenInquiry }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer rounded-3xl bg-[#0D0D14] border border-white/10 overflow-hidden hover:border-polaris-blue/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
+                className="group cursor-pointer rounded-3xl bg-[var(--primary-black)] border border-[var(--primary-border)]/10 overflow-hidden hover:border-[var(--primary-circuit)]/50 transition-all duration-500 shadow-xl flex flex-col justify-between"
               >
                 {/* Visual Area */}
                 <div className={`h-64 sm:h-72 w-full bg-gradient-to-br ${project.gradient} p-6 flex flex-col justify-between relative overflow-hidden`}>
                   <div className="flex items-center justify-between relative z-10">
-                    <span className="text-xs font-mono tracking-widest text-polaris-cyan bg-black/60 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md">
+                    <span className="text-xs font-mono tracking-widest text-[var(--primary-circuit)] bg-[var(--primary-black)]/60 px-3 py-1 rounded-full border border-[var(--primary-border)] backdrop-blur-md">
                       {project.category}
                     </span>
-                    <span className="text-xs font-mono text-white/60">
+                    <span className="text-xs font-mono text-[var(--primary-text)]/60">
                       {project.year}
                     </span>
                   </div>
 
                   <div className="relative z-10">
-                    <span className="text-xs font-mono text-white/90 bg-white/10 px-3 py-1.5 rounded-lg border border-white/20 backdrop-blur-md inline-block">
+                    <span className="text-xs font-mono text-[var(--primary-text)]/90 bg-[var(--primary-black)]/10 px-3 py-1.5 rounded-lg border border-[var(--primary-border)] backdrop-blur-md inline-block">
                       {project.impact}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-4 right-4 p-3 rounded-full bg-white text-black opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="absolute bottom-4 right-4 p-3 rounded-full bg-[var(--primary-black)] text-[var(--primary-text)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <ArrowUpRight className="w-5 h-5" />
                   </div>
                 </div>
@@ -236,18 +236,18 @@ export default function SelectedWork({ onOpenInquiry }) {
                 {/* Content */}
                 <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="text-xs font-mono text-polaris-muted">CLIENT: {project.client}</div>
-                    <h3 className="font-display font-bold text-2xl text-white group-hover:text-polaris-blue transition-colors">
+                    <div className="text-xs font-mono text-[var(--primary-text)]/60">CLIENT: {project.client}</div>
+                    <h3 className="font-display font-bold text-2xl text-[var(--primary-text)] group-hover:text-[var(--primary-circuit)] transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-polaris-muted leading-relaxed line-clamp-3">
+                    <p className="text-sm text-[var(--primary-text)]/60 leading-relaxed line-clamp-3">
                       {project.shortDescription}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2">
+                  <div className="pt-4 border-t border-[var(--primary-border)]/10 flex flex-wrap gap-2">
                     {project.services.map((service, i) => (
-                      <span key={i} className="text-[11px] font-mono text-white/70 bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/[0.06]">
+                      <span key={i} className="text-[11px] font-mono text-[var(--primary-text)]/70 bg-[var(--primary-black)]/10 px-2.5 py-1 rounded-md border border-[var(--primary-border)]/20">
                         {service}
                       </span>
                     ))}
@@ -265,32 +265,32 @@ export default function SelectedWork({ onOpenInquiry }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             onClick={() => setSelectedProject(projects[3])}
-            className="group cursor-pointer rounded-3xl bg-[#0D0D14] border border-white/10 overflow-hidden hover:border-polaris-blue/50 transition-all duration-500 shadow-2xl grid lg:grid-cols-12 items-stretch"
+            className="group cursor-pointer rounded-3xl bg-[var(--primary-black)] border border-[var(--primary-border)]/10 overflow-hidden hover:border-[var(--primary-circuit)]/50 transition-all duration-500 shadow-2xl grid lg:grid-cols-12 items-stretch"
           >
             {/* Content Area */}
             <div className="lg:col-span-5 p-8 flex flex-col justify-between space-y-6 order-2 lg:order-1">
               <div className="space-y-4">
-                <div className="text-xs font-mono text-polaris-muted">CLIENT: {projects[3].client}</div>
-                <h3 className="font-display font-bold text-2xl sm:text-3xl text-white group-hover:text-polaris-cyan transition-colors">
+                <div className="text-xs font-mono text-[var(--primary-text)]/60">CLIENT: {projects[3].client}</div>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-[var(--primary-text)] group-hover:text-[var(--primary-circuit)] transition-colors">
                   {projects[3].title}
                 </h3>
-                <p className="text-sm text-white/80 leading-relaxed">
+                <p className="text-sm text-[var(--primary-text)]/80 leading-relaxed">
                   {projects[3].fullDescription}
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[var(--primary-border)]/10">
                 {projects[3].metrics.slice(0, 2).map((m, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                    <div className="text-xl font-display font-bold text-polaris-cyan">{m.value}</div>
-                    <div className="text-[10px] font-mono text-polaris-muted">{m.label}</div>
+                  <div key={i} className="p-3 rounded-xl bg-[var(--primary-black)]/10 border border-[var(--primary-border)]/20">
+                    <div className="text-xl font-display font-bold text-[var(--primary-circuit)]">{m.value}</div>
+                    <div className="text-[10px] font-mono text-[var(--primary-text)]/60">{m.label}</div>
                   </div>
                 ))}
               </div>
 
               <div className="pt-2 flex flex-wrap gap-2">
                 {projects[3].services.map((service, i) => (
-                  <span key={i} className="text-[11px] font-mono text-white/70 bg-white/[0.04] px-3 py-1 rounded-md border border-white/[0.06]">
+                  <span key={i} className="text-[11px] font-mono text-[var(--primary-text)]/70 bg-[var(--primary-black)]/10 px-3 py-1 rounded-md border border-[var(--primary-border)]/20">
                     {service}
                   </span>
                 ))}
@@ -300,19 +300,19 @@ export default function SelectedWork({ onOpenInquiry }) {
             {/* Visual Area */}
             <div className={`lg:col-span-7 h-72 lg:h-auto bg-gradient-to-br ${projects[3].gradient} p-8 flex flex-col justify-between relative overflow-hidden order-1 lg:order-2`}>
               <div className="flex items-center justify-between relative z-10">
-                <span className="text-xs font-mono tracking-widest text-polaris-cyan bg-black/60 px-3.5 py-1 rounded-full border border-white/10 backdrop-blur-md">
+                <span className="text-xs font-mono tracking-widest text-[var(--primary-circuit)] bg-[var(--primary-black)]/60 px-3.5 py-1 rounded-full border border-[var(--primary-border)] backdrop-blur-md">
                   {projects[3].category}
                 </span>
-                <span className="text-xs font-mono text-white/60">
+                <span className="text-xs font-mono text-[var(--primary-text)]/60">
                   {projects[3].year}
                 </span>
               </div>
 
               <div className="relative z-10 flex items-center justify-between mt-auto">
-                <span className="text-xs font-mono text-white/90 bg-white/10 px-3 py-1.5 rounded-lg border border-white/20 backdrop-blur-md">
+                <span className="text-xs font-mono text-[var(--primary-text)]/90 bg-[var(--primary-black)]/10 px-3 py-1.5 rounded-lg border border-[var(--primary-border)] backdrop-blur-md">
                   {projects[3].impact}
                 </span>
-                <div className="p-3 rounded-full bg-white text-black opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1">
+                <div className="p-3 rounded-full bg-[var(--primary-black)] text-[var(--primary-text)] opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
               </div>

@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060608] text-white selection:bg-polaris-blue/30 selection:text-polaris-cyan relative overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--primary-black)] text-[var(--primary-text)] selection:bg-[var(--primary-circuit)]/30 selection:text-[var(--primary-signal)] relative overflow-x-hidden">
       {/* Preloader Sequence */}
       <Preloader />
 

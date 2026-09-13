@@ -32,9 +32,9 @@ export default function TechCapabilities() {
     : capabilities.filter((c) => c.category === activeCategory);
 
   return (
-    <section id="capabilities" className="py-28 px-4 sm:px-8 bg-[#060608] relative">
+    <section id="capabilities" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)] relative">
       <div className="max-w-7xl mx-auto space-y-16">
-        
+
         {/* Animated Section Header */}
         <SectionHeader
           badge="07 // CAPABILITY MATRIX"
@@ -51,8 +51,8 @@ export default function TechCapabilities() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-mono transition-all whitespace-nowrap ${
                 activeCategory === cat
-                  ? 'bg-white text-black font-semibold shadow-md'
-                  : 'bg-white/[0.04] text-polaris-muted hover:bg-white/[0.08] hover:text-white border border-white/[0.06]'
+                  ? 'bg-[var(--primary-text)] text-[var(--primary-black)] font-semibold shadow-[var(--shadow-text-light-0-0-20px-0-25)]'
+                  : 'bg-[var(--primary-black)]/20 text-[var(--primary-text)]/60 hover:bg-[var(--primary-black)]/30 hover:text-[var(--primary-text)] border border-[var(--primary-border)]/20'
               }`}
             >
               {cat}
@@ -68,15 +68,15 @@ export default function TechCapabilities() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.03 }}
-              className="p-5 rounded-2xl bg-[#0D0D14] border border-white/10 space-y-2 hover:border-polaris-blue/40 transition-colors"
+              className="p-5 rounded-2xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 space-y-2 hover:border-[var(--primary-circuit)]/40 transition-colors"
             >
-              <span className="text-[10px] font-mono text-polaris-blue bg-polaris-blue/10 px-2 py-0.5 rounded border border-polaris-blue/20">
+              <span className="text-[10px] font-mono text-[var(--primary-circuit)] bg-[var(--primary-circuit)]/10 px-2 py-0.5 rounded border border-[var(--primary-circuit)]/20">
                 {cap.category}
               </span>
-              <h3 className="font-display font-semibold text-base text-white">
+              <h3 className="font-display font-semibold text-base text-[var(--primary-text)]">
                 {cap.name}
               </h3>
-              <p className="text-xs text-polaris-muted leading-relaxed">
+              <p className="text-xs text-[var(--primary-text)]/60 leading-relaxed">
                 {cap.desc}
               </p>
             </motion.div>

@@ -32,9 +32,9 @@ export default function ImpactMetrics() {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-8 bg-[#08080E] border-y border-white/[0.08] relative">
+    <section className="py-24 px-4 sm:px-8 bg-[var(--primary-slate)] border-y border-[var(--primary-border)]/20 relative">
       <div className="max-w-7xl mx-auto space-y-16">
-        
+
         {/* Animated Section Header */}
         <SectionHeader
           badge="08 // GUARANTEES"
@@ -53,18 +53,18 @@ export default function ImpactMetrics() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-8 rounded-3xl bg-[#0D0D14] border border-white/10 space-y-4 hover:border-polaris-blue/40 transition-colors"
+                className="p-8 rounded-3xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 space-y-4 hover:border-[var(--primary-circuit)]/40 transition-colors"
               >
-                <div className="w-10 h-10 rounded-xl bg-polaris-blue/10 border border-polaris-blue/20 flex items-center justify-center text-polaris-blue">
+                <div className="w-10 h-10 rounded-xl bg-[var(--primary-circuit)]/10 border border-[var(--primary-circuit)]/20 flex items-center justify-center text-[var(--primary-circuit)]">
                   <Icon className="w-5 h-5" />
                 </div>
-                <span className="text-[10px] font-mono text-polaris-cyan bg-polaris-cyan/10 px-2.5 py-0.5 rounded border border-polaris-cyan/20 inline-block">
+                <span className="text-[10px] font-mono text-[var(--primary-signal)] bg-[var(--primary-signal)]/10 px-2.5 py-0.5 rounded border border-[var(--primary-signal)]/20 inline-block">
                   {m.badge}
                 </span>
-                <h3 className="font-display font-bold text-xl text-white">
+                <h3 className="font-display font-bold text-xl text-[var(--primary-text)]">
                   {m.title}
                 </h3>
-                <p className="text-sm text-polaris-muted leading-relaxed">
+                <p className="text-sm text-[var(--primary-text)]/60 leading-relaxed">
                   {m.subtitle}
                 </p>
               </motion.div>

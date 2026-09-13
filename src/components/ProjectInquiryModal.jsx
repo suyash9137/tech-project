@@ -4,6 +4,7 @@ import { X, CheckCircle2, Send, Star, AlertCircle } from 'lucide-react';
 import { submitProjectInquiry } from '../utils/tallySubmission';
 
 export default function ProjectInquiryModal({ isOpen, onClose }) {
+  console.log('ProjectInquiryModal rendered with isOpen:', isOpen);
   const [selectedServices, setSelectedServices] = useState([]);
   const [budget, setBudget] = useState('$50k – $100k');
   const [timeline, setTimeline] = useState('1–2 Months');
@@ -153,7 +154,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={resetForm}
-          className="fixed inset-0 bg-[#060608]/90 backdrop-blur-2xl"
+          className="fixed inset-0 bg-[var(--primary-black)]/90 backdrop-blur-2xl"
           aria-hidden="true"
         />
 
@@ -163,23 +164,23 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-          className="relative w-full max-w-2xl bg-[#0D0D14] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl z-10 my-auto text-white"
+          className="relative w-full max-w-2xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 rounded-3xl p-6 sm:p-10 shadow-2xl z-10 my-auto text-[var(--primary-text)]"
           role="dialog"
           aria-labelledby="modal-title"
           aria-modal="true"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-8">
+          <div className="flex items-center justify-between border-b border-[var(--primary-border)]/10 pb-6 mb-8">
             <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-polaris-blue animate-pulse" />
-              <span id="modal-title" className="text-xs font-mono text-polaris-blue uppercase tracking-widest">
+              <Star className="w-4 h-4 text-[var(--primary-circuit)] animate-pulse" />
+              <span id="modal-title" className="text-xs font-mono text-[var(--primary-circuit)] uppercase tracking-widest">
                 START A PROJECT &bull; POLARIS TECHNOLOGIES
               </span>
             </div>
             <button
               onClick={resetForm}
               aria-label="Close modal"
-              className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-polaris-blue"
+              className="p-2 rounded-full bg-[var(--primary-text)]/5 border border-[var(--primary-text)]/10 hover:bg-[var(--primary-text)]/10 text-[var(--primary-text)] transition-colors focus:outline-none focus:ring-2 focus:ring-primary-circuit"
             >
               <X className="w-5 h-5" />
             </button>
@@ -189,7 +190,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
             <form onSubmit={handleSubmit} noValidate className="space-y-8">
               {/* Step 1: Select Services */}
               <div className="space-y-4">
-                <label id="services-label" className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
+                <label id="services-label" className="text-xs font-mono text-[var(--primary-text)]/60 uppercase tracking-wider block">
                   01 &bull; WHAT WOULD YOU LIKE TO BUILD? (SELECT ALL THAT APPLY) *
                 </label>
                 <div className="grid grid-cols-2 gap-3" role="group" aria-labelledby="services-label">
@@ -201,10 +202,10 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                         key={service}
                         onClick={() => toggleService(service)}
                         aria-pressed={isSelected}
-                        className={`cursor-pointer p-3.5 rounded-xl border text-xs font-semibold transition-all text-left focus:outline-none focus:ring-2 focus:ring-polaris-blue ${
+                        className={`cursor-pointer p-3.5 rounded-xl border text-xs font-semibold transition-all text-left focus:outline-none focus:ring-2 focus:ring-[var(--primary-circuit)] ${
                           isSelected
-                            ? 'bg-polaris-blue text-black border-polaris-blue shadow-md'
-                            : 'bg-white/[0.03] text-white/80 border-white/10 hover:bg-white/[0.06]'
+                            ? 'bg-[var(--primary-circuit)] text-[var(--primary-black)] border-[var(--primary-circuit)] shadow-md'
+                            : 'bg-[var(--primary-text)]/[0.03] text-[var(--primary-text)]/80 border-[var(--primary-text)]/10 hover:bg-[var(--primary-text)]/[0.06]'
                         }`}
                       >
                         {service}
@@ -213,8 +214,8 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   })}
                 </div>
                 {fieldErrors.services && (
-                  <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                    <AlertCircle className="w-3.5 h-3.5" />
+                  <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                    <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                     {fieldErrors.services}
                   </p>
                 )}
@@ -223,7 +224,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               {/* Step 2: Budget & Timeline */}
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <label id="budget-label" className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
+                  <label id="budget-label" className="text-xs font-mono text-[var(--primary-text)]/60 uppercase tracking-wider block">
                     02 &bull; ESTIMATED BUDGET *
                   </label>
                   <div className="space-y-2" role="radiogroup" aria-labelledby="budget-label">
@@ -237,10 +238,10 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                         }}
                         role="radio"
                         aria-checked={budget === b}
-                        className={`w-full cursor-pointer p-2.5 rounded-lg border text-xs font-mono transition-all text-left focus:outline-none focus:ring-2 focus:ring-polaris-blue ${
+                        className={`w-full cursor-pointer p-2.5 rounded-lg border text-xs font-mono transition-all text-left focus:outline-none focus:ring-2 focus:ring-[var(--primary-circuit)] ${
                           budget === b
-                            ? 'bg-white text-black font-semibold border-white'
-                            : 'bg-white/[0.02] text-white/70 border-white/10 hover:bg-white/[0.05]'
+                            ? 'bg-[var(--primary-text)] text-[var(--primary-black)] font-semibold border-[var(--primary-text)]'
+                            : 'bg-[var(--primary-text)]/[0.02] text-[var(--primary-text)]/70 border-[var(--primary-text)]/10 hover:bg-[var(--primary-text)]/[0.05]'
                         }`}
                       >
                         {b}
@@ -248,15 +249,15 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                     ))}
                   </div>
                   {fieldErrors.budget && (
-                    <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                      <AlertCircle className="w-3.5 h-3.5" />
+                    <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                      <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                       {fieldErrors.budget}
                     </p>
                   )}
                 </div>
 
                 <div className="space-y-3">
-                  <label id="timeline-label" className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
+                  <label id="timeline-label" className="text-xs font-mono text-[var(--primary-text)]/60 uppercase tracking-wider block">
                     03 &bull; DESIRED TIMELINE *
                   </label>
                   <div className="space-y-2" role="radiogroup" aria-labelledby="timeline-label">
@@ -270,10 +271,10 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                         }}
                         role="radio"
                         aria-checked={timeline === t}
-                        className={`w-full cursor-pointer p-2.5 rounded-lg border text-xs font-mono transition-all text-left focus:outline-none focus:ring-2 focus:ring-polaris-blue ${
+                        className={`w-full cursor-pointer p-2.5 rounded-lg border text-xs font-mono transition-all text-left focus:outline-none focus:ring-2 focus:ring-[var(--primary-circuit)] ${
                           timeline === t
-                            ? 'bg-white text-black font-semibold border-white'
-                            : 'bg-white/[0.02] text-white/70 border-white/10 hover:bg-white/[0.05]'
+                            ? 'bg-[var(--primary-text)] text-[var(--primary-black)] font-semibold border-[var(--primary-text)]'
+                            : 'bg-[var(--primary-text)]/[0.02] text-[var(--primary-text)]/70 border-[var(--primary-text)]/10 hover:bg-[var(--primary-text)]/[0.05]'
                         }`}
                       >
                         {t}
@@ -281,8 +282,8 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                     ))}
                   </div>
                   {fieldErrors.timeline && (
-                    <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                      <AlertCircle className="w-3.5 h-3.5" />
+                    <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                      <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                       {fieldErrors.timeline}
                     </p>
                   )}
@@ -290,8 +291,8 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               </div>
 
               {/* Step 3: Contact Inputs */}
-              <div className="space-y-4 pt-4 border-t border-white/10">
-                <label className="text-xs font-mono text-polaris-muted uppercase tracking-wider block">
+              <div className="space-y-4 pt-4 border-t border-[var(--primary-border)]/10">
+                <label className="text-xs font-mono text-[var(--primary-text)]/60 uppercase tracking-wider block">
                   04 &bull; YOUR CONTACT DETAILS
                 </label>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -307,13 +308,13 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                         setFormData({ ...formData, name: e.target.value });
                         if (fieldErrors.name) setFieldErrors((prev) => ({ ...prev, name: null }));
                       }}
-                      className={`w-full p-3.5 rounded-xl bg-white/[0.03] border text-white text-sm focus:outline-none focus:border-polaris-blue focus:ring-1 focus:ring-polaris-blue transition-colors ${
-                        fieldErrors.name ? 'border-red-500/80' : 'border-white/10'
+                      className={`w-full p-3.5 rounded-xl bg-[var(--primary-text)]/[0.03] border-[var(--primary-text)]/10 text-[var(--primary-text)] text-sm focus:outline-none focus:border-[var(--primary-circuit)] focus:ring-[var(--primary-circuit)] transition-colors ${
+                        fieldErrors.name ? 'border-[var(--primary-signal)]/80' : 'border-[var(--primary-text)]/10'
                       }`}
                     />
                     {fieldErrors.name && (
-                      <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                        <AlertCircle className="w-3.5 h-3.5" />
+                      <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                        <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                         {fieldErrors.name}
                       </p>
                     )}
@@ -331,13 +332,13 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                         setFormData({ ...formData, email: e.target.value });
                         if (fieldErrors.email) setFieldErrors((prev) => ({ ...prev, email: null }));
                       }}
-                      className={`w-full p-3.5 rounded-xl bg-white/[0.03] border text-white text-sm focus:outline-none focus:border-polaris-blue focus:ring-1 focus:ring-polaris-blue transition-colors ${
-                        fieldErrors.email ? 'border-red-500/80' : 'border-white/10'
+                      className={`w-full p-3.5 rounded-xl bg-[var(--primary-text)]/[0.03] border-[var(--primary-text)]/10 text-[var(--primary-text)] text-sm focus:outline-none focus:border-[var(--primary-circuit)] focus:ring-[var(--primary-circuit)] transition-colors ${
+                        fieldErrors.email ? 'border-[var(--primary-signal)]/80' : 'border-[var(--primary-text)]/10'
                       }`}
                     />
                     {fieldErrors.email && (
-                      <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                        <AlertCircle className="w-3.5 h-3.5" />
+                      <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                        <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                         {fieldErrors.email}
                       </p>
                     )}
@@ -352,7 +353,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                     placeholder="Company Name (Optional)"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white text-sm focus:outline-none focus:border-polaris-blue focus:ring-1 focus:ring-polaris-blue transition-colors"
+                    className="w-full p-3.5 rounded-xl bg-[var(--primary-text)]/[0.03] border-[var(--primary-text)]/10 text-[var(--primary-text)] text-sm focus:outline-none focus:border-[var(--primary-circuit)] focus:ring-[var(--primary-circuit)] transition-colors"
                   />
                 </div>
 
@@ -368,13 +369,13 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                       setFormData({ ...formData, details: e.target.value });
                       if (fieldErrors.details) setFieldErrors((prev) => ({ ...prev, details: null }));
                     }}
-                    className={`w-full p-3.5 rounded-xl bg-white/[0.03] border text-white text-sm focus:outline-none focus:border-polaris-blue focus:ring-1 focus:ring-polaris-blue transition-colors resize-none ${
-                      fieldErrors.details ? 'border-red-500/80' : 'border-white/10'
+                    className={`w-full p-3.5 rounded-xl bg-[var(--primary-text)]/[0.03] border-[var(--primary-text)]/10 text-[var(--primary-text)] text-sm focus:outline-none focus:border-[var(--primary-circuit)] focus:ring-[var(--primary-circuit)] transition-colors resize-none ${
+                      fieldErrors.details ? 'border-[var(--primary-signal)]/80' : 'border-[var(--primary-text)]/10'
                     }`}
                   ></textarea>
                   {fieldErrors.details && (
-                    <p className="text-xs text-red-400 flex items-center gap-1 mt-1 font-mono">
-                      <AlertCircle className="w-3.5 h-3.5" />
+                    <p className="text-xs text-[var(--primary-signal)] flex items-center gap-1 mt-1 font-mono">
+                      <AlertCircle className="w-3.5 h-3.5 text-[var(--primary-signal)]" />
                       {fieldErrors.details}
                     </p>
                   )}
@@ -395,14 +396,12 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-4 rounded-xl ${
-                  loading ? 'bg-white/[0.2] cursor-not-allowed' : 'bg-white hover:bg-polaris-blue hover:text-white'
-                } text-black font-semibold text-sm flex items-center justify-center gap-2 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-polaris-blue`}
+                className={`w-full py-4 rounded-xl ${loading ? 'bg-[var(--primary-text)]/[0.2] cursor-not-allowed' : 'bg-[var(--primary-text)] hover:bg-[var(--primary-circuit)]'} text-[var(--primary-black)] font-semibold text-sm flex items-center justify-center gap-2 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-circuit)]`}
               >
                 {loading ? (
                   <>
-                    <span className="mr-2">Submitting...</span>
-                    <svg className="w-4 h-4 animate-spin text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <span className="mr-2 text-[var(--primary-black)]">Submitting...</span>
+                    <svg className="w-4 h-4 animate-spin text-[var(--primary-black)]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -417,8 +416,8 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
 
               {/* General Error Summary Message */}
               {error && (
-                <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl text-xs sm:text-sm flex items-center gap-2 font-mono">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+                <div className="mt-4 p-4 bg-[var(--primary-signal)]/10 border border-[var(--primary-signal)]/30 text-[var(--primary-signal)] rounded-xl text-xs sm:text-sm flex items-center gap-2 font-mono">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-[var(--primary-signal)]" />
                   <span>{error}</span>
                 </div>
               )}
@@ -430,20 +429,20 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
               transition={{ duration: 0.4 }}
               className="py-12 text-center space-y-6"
             >
-              <div className="w-16 h-16 rounded-full bg-polaris-blue/20 text-polaris-blue flex items-center justify-center mx-auto border border-polaris-blue/40">
+              <div className="w-16 h-16 rounded-full bg-[var(--primary-circuit)]/20 text-[var(--primary-circuit)] flex items-center justify-center mx-auto border border-[var(--primary-circuit)]/40">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <div className="space-y-3">
-                <h3 className="font-display font-bold text-2xl text-white">
+                <h3 className="font-display font-bold text-2xl text-[var(--primary-text)]">
                   Thanks for reaching out to Polaris Technologies! 🚀
                 </h3>
-                <p className="text-sm text-polaris-muted max-w-md mx-auto leading-relaxed font-sans">
+                <p className="text-sm text-[var(--primary-text)]/60 max-w-md mx-auto leading-relaxed font-sans">
                   We've received your project inquiry. Our team will review your requirements and contact you shortly.
                 </p>
               </div>
               <button
                 onClick={resetForm}
-                className="px-6 py-3 rounded-full bg-white/10 text-white text-xs font-mono hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-polaris-blue"
+                className="px-6 py-3 rounded-full bg-[var(--primary-text)]/10 text-[var(--primary-black)] text-xs font-mono hover:bg-[var(--primary-text)]/20 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary-circuit)]"
               >
                 Close Window
               </button>

@@ -2,9 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables for Polariss Technologies Token System */
+:root {
+  --primary-black: #0A0A0F;
+  --primary-slate: #121220;
+  --primary-circuit: #00F5FF;
+  --primary-signal: #00FF88;
+  --primary-data: #60EFFF;
+  --primary-muted: #60EFFF80;
+  --primary-text: #E0E6ED;
+  --primary-border: rgba(255, 255, 255, 0.08);
+  --primary-border-hover: rgba(255, 255, 255, 0.18);
+  --primary-shadow-circuit: rgba(79, 140, 255, 0.15);
+  --primary-glow-circuit: rgba(79, 140, 255, 0.3);
+  --primary-glow-circuit-strong: rgba(79, 140, 255, 0.8); /* Added for scroll progress */
+  --primary-shadow-circuit-cyan: rgba(0, 245, 255, 0.15);
+  --primary-glow-circuit-cyan: rgba(0, 245, 255, 0.3);
+  --primary-glow-circuit-cyan-strong: rgba(0, 245, 255, 0.4);
+  --primary-glow-circuit-cyan-stronger: rgba(0, 245, 255, 0.5);
+  --primary-shadow-text: rgba(255, 255, 255, 0.15);
+  --primary-glow-text: rgba(255, 255, 255, 0.3);
+  --primary-shadow-text-light: rgba(224, 230, 237, 0.25); /* Added for tech capabilities */
+  --primary-gradient-hero-bg: radial-gradient(circle_at_50%_0%, rgba(0,245,255,0.08) 0%, rgba(10,10,15,0) 70%);
+  --primary-gradient-grid-mesh: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  /* Shadow values as complete variables for use in className */
+  --shadow-circuit-0-0-20px-0-15: 0 0 20px rgba(0, 245, 255, 0.15);
+  --shadow-circuit-0-0-20px-0-1: 0 0 20px rgba(0, 245, 255, 0.1);
+  --shadow-circuit-0-0-30px-0-15: 0 0 30px rgba(0, 245, 255, 0.15);
+  --shadow-text-0-0-30px-0-15: 0 0 30px rgba(255, 255, 255, 0.15);
+  --shadow-text-0-0-20px-0-1: 0 0 20px rgba(255, 255, 255, 0.1);
+  --shadow-circuit-0-0-25px-0-3: 0 0 25px rgba(0, 245, 255, 0.3);
+  --shadow-black-0-0-30px-0-5: 0 0 30px rgba(0, 0, 0, 0.5);
+  --shadow-circuit-0-0-35px-0-4: 0 0 35px rgba(0, 245, 255, 0.4);
+  --shadow-circuit-0-0-20px-0-4: 0 0 20px rgba(0, 245, 255, 0.4);
+  --shadow-circuit-0-0-15px-0-5: 0 0 15px rgba(0, 245, 255, 0.5);
+  --shadow-glow-circuit-0-0-10px-0-8: 0 0 10px rgba(79, 140, 255, 0.8);
+  --shadow-text-light-0-0-20px-0-25: 0 0 20px rgba(224, 230, 237, 0.25);
+  --primary-transparent: transparent;
+}
+
+.dark {
+  --primary-black: #0A0A0F;
+  --primary-slate: #121220;
+  --primary-circuit: #00F5FF;
+  --primary-signal: #00FF88;
+  --primary-data: #60EFFF;
+  --primary-muted: #60EFFF80;
+  --primary-text: #E0E6ED;
+  --primary-border: rgba(255, 255, 255, 0.08);
+  --primary-border-hover: rgba(255, 255, 255, 0.18);
+  --primary-shadow-circuit: rgba(79, 140, 255, 0.15);
+  --primary-glow-circuit: rgba(79, 140, 255, 0.3);
+  --primary-glow-circuit-strong: rgba(79, 140, 255, 0.8); /* Added for scroll progress */
+  --primary-shadow-circuit-cyan: rgba(0, 245, 255, 0.15);
+  --primary-glow-circuit-cyan: rgba(0, 245, 255, 0.3);
+  --primary-glow-circuit-cyan-strong: rgba(0, 245, 255, 0.4);
+  --primary-glow-circuit-cyan-stronger: rgba(0, 245, 255, 0.5);
+  --primary-shadow-text: rgba(255, 255, 255, 0.15);
+  --primary-glow-text: rgba(255, 255, 255, 0.3);
+  --primary-shadow-text-light: rgba(224, 230, 237, 0.25); /* Added for tech capabilities */
+  /* Shadow values as complete variables for use in className */
+  --shadow-circuit-0-0-20px-0-15: 0 0 20px rgba(0, 245, 255, 0.15);
+  --shadow-circuit-0-0-20px-0-1: 0 0 20px rgba(0, 245, 255, 0.1);
+  --shadow-circuit-0-0-30px-0-15: 0 0 30px rgba(0, 245, 255, 0.15);
+  --shadow-text-0-0-30px-0-15: 0 0 30px rgba(255, 255, 255, 0.15);
+  --shadow-text-0-0-20px-0-1: 0 0 20px rgba(255, 255, 255, 0.1);
+  --shadow-circuit-0-0-25px-0-3: 0 0 25px rgba(0, 245, 255, 0.3);
+  --shadow-black-0-0-30px-0-5: 0 0 30px rgba(0, 0, 0, 0.5);
+  --shadow-circuit-0-0-35px-0-4: 0 0 35px rgba(0, 245, 255, 0.4);
+  --shadow-circuit-0-0-20px-0-4: 0 0 20px rgba(0, 245, 255, 0.4);
+  --shadow-circuit-0-0-15px-0-5: 0 0 15px rgba(0, 245, 255, 0.5);
+  --shadow-glow-circuit-0-0-10px-0-8: 0 0 10px rgba(79, 140, 255, 0.8);
+  --shadow-text-light-0-0-20px-0-25: 0 0 20px rgba(224, 230, 237, 0.25);
+  --primary-transparent: transparent;
+}
+
 @layer base {
   body {
-    @apply bg-[#060608] text-white font-sans antialiased overflow-x-hidden selection:bg-[#4F8CFF]/30 selection:text-[#4CC9F0];
+    @apply bg-[var(--primary-black)] text-[var(--primary-text)] font-sans antialiased overflow-x-hidden;
+    background-color: var(--primary-black);
+    color: var(--primary-text);
+  }
+
+  /* Selection colors */
+  ::selection {
+    background-color: var(--primary-circuit) / 30%; /* selection:bg-[var(--primary-circuit)]/30 */
+    color: var(--primary-signal); /* selection:text-[var(--primary-signal)] */
   }
 }
 
@@ -16,9 +99,9 @@
 /* Grid overlay background */
 .bg-grid-mesh {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, var(--primary-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--primary-border) 1px, transparent 1px);
 }
 
 /* Custom Scrollbar */
@@ -26,28 +109,28 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #060608;
+  background: var(--primary-black);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1C1C26;
+  background: var(--primary-slate);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4F8CFF;
+  background: var(--primary-circuit);
 }
 
 /* Custom Framer-like glow borders */
 .border-gradient {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--primary-border);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .border-gradient:hover {
-  border-color: rgba(79, 140, 255, 0.3);
-  box-shadow: 0 0 25px -5px rgba(79, 140, 255, 0.15);
+  border-color: var(--primary-border-hover);
+  box-shadow: 0 0 25px -5px var(--primary-shadow-circuit);
 }
 
 /* Glow signal */
 .signal-glow {
-  box-shadow: 0 0 20px rgba(79, 140, 255, 0.3);
+  box-shadow: 0 0 20px var(--primary-glow-circuit);
 }

@@ -20,7 +20,7 @@ export default function SectionHeader({
   const words = title ? title.split(' ') : [];
 
   return (
-    <div className={`space-y-4 pb-8 border-b border-white/[0.08] relative ${className}`}>
+    <div className={`space-y-4 pb-8 border-b border-[var(--primary-border)]/[0.08] relative ${className}`}>
       
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         
@@ -33,16 +33,16 @@ export default function SectionHeader({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-polaris-blue/10 text-polaris-blue border border-polaris-blue/20 text-xs font-mono backdrop-blur-md relative group overflow-hidden"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--primary-circuit)]/[0.1] text-[var(--primary-circuit)] border border-[var(--primary-circuit)]/[0.2] text-xs font-mono backdrop-blur-md relative group overflow-hidden"
           >
             {/* Pulsing signal beacon dot */}
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-polaris-cyan opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-polaris-blue"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary-data)] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--primary-circuit)]"></span>
             </span>
             <span className="tracking-wider uppercase">{badge}</span>
             {/* Shimmer overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-black)]/[0] via-[var(--primary-text)]/[0.1] to-[var(--primary-black)]/[0] -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"></div>
           </motion.div>
 
           {/* Staggered Word Reveal Headline */}
@@ -51,7 +51,7 @@ export default function SectionHeader({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-white leading-tight"
+            className="font-display font-bold text-3xl sm:text-5xl tracking-tight text-[var(--primary-text)] leading-tight"
           >
             {words.map((word, idx) => {
               const isHighlight = highlightWord && word.toLowerCase().includes(highlightWord.toLowerCase());
@@ -60,7 +60,7 @@ export default function SectionHeader({
                 return (
                   <span
                     key={idx}
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-polaris-cyan to-polaris-blue animate-pulse-slow font-extrabold mr-2.5"
+                    className="inline-block text-[var(--primary-text)]/[0] bg-clip-text bg-gradient-to-r from-[var(--primary-text)] via-[var(--primary-data)] to-[var(--primary-circuit)] animate-pulse-slow font-extrabold mr-2.5"
                   >
                     {word}{' '}
                   </span>
@@ -73,7 +73,7 @@ export default function SectionHeader({
                 </span>
               );
             })}
-            {titleSuffix && <span className="text-white">{titleSuffix}</span>}
+            {titleSuffix && <span className="text-[var(--primary-text)]">{titleSuffix}</span>}
           </motion.h2>
 
         </div>
@@ -81,11 +81,11 @@ export default function SectionHeader({
         {/* Right Column: Description or Right Element */}
         {description && (
           <motion.p
-            initial={{ opacity: 0, opacity: 0 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-polaris-muted text-sm sm:text-base max-w-md leading-relaxed"
+            className="text-[var(--primary-muted)] text-sm sm:text-base max-w-md leading-relaxed"
           >
             {description}
           </motion.p>
@@ -103,7 +103,7 @@ export default function SectionHeader({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-polaris-blue/60 via-polaris-cyan/40 to-transparent origin-left pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--primary-circuit)]/[0.6] via-[var(--primary-data)]/[0.4] to-[var(--primary-black)]/[0] origin-left pointer-events-none"
       />
     </div>
   );

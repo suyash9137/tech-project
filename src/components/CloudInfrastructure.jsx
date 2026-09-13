@@ -53,7 +53,7 @@ const CloudInfrastructure = () => {
               <div className="p-6">
                 <div className="text-4xl mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-2 text-neon-cyan">{feature.title}</h3>
-                <p className="text-white/80 leading-relaxed">{feature.description}</p>
+                <p className="text-[var(--primary-text)]/[0.8] leading-relaxed">{feature.description}</p>
               </div>
             </motion.div>
           </motion.div>

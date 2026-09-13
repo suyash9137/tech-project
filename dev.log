@@ -1,0 +1,41 @@
+
+> polaris-technologies@0.1.0 dev
+> vite --port 5173
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m512[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m1:08:58 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Hero.jsx[22m
+[2m1:09:11 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Header.jsx[22m
+[2m1:09:22 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Footer.jsx[22m
+[2m1:09:26 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Footer.jsx[22m
+[2m1:09:31 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Footer.jsx[22m
+[2m1:09:55 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Hero.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/App.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/AboutPolaris.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/AiAutomationSection.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/CaseStudyModal.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/CloudInfrastructure.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/CustomCursor.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Footer.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Header.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Hero.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ImpactMetrics.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/MagneticButton.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/PolarisDirection.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/PolarisLogo.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Preloader.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Process.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ProjectInquiryModal.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/ScrollProgress.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/SectionHeader.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/SelectedWork.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/Services.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/SoftwareEngineeringLabs.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/main.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/TechCapabilities.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/components/TrustSignal.jsx[22m
+[2m1:56:34 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/utils/tallySubmission.js[22m

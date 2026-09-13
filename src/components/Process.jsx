@@ -55,7 +55,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="py-28 px-4 sm:px-8 bg-[#08080E] relative border-t border-white/[0.08]">
+    <section id="process" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-t border-[var(--primary-border)]/20">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Animated Section Header */}
@@ -79,59 +79,59 @@ export default function Process() {
                 onMouseEnter={() => setActiveStep(idx)}
                 className={`cursor-pointer p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-6 ${
                   isActive
-                    ? 'bg-[#12121D] border-polaris-blue shadow-[0_0_20px_rgba(79,140,255,0.15)]'
-                    : 'bg-[#0A0A0E] border-white/10 hover:border-white/20'
+                    ? 'bg-[var(--primary-black)] border-[var(--primary-circuit)] shadow-[var(--shadow-circuit-0-0-20px-0-15)]'
+                    : 'bg-[var(--primary-black)]/10 border-[var(--primary-border)]/10 hover:border-[var(--primary-border)]/20'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className={`font-mono text-sm ${isActive ? 'text-polaris-blue' : 'text-polaris-muted'}`}>
+                  <span className={`font-mono text-sm ${isActive ? 'text-[var(--primary-circuit)]' : 'text-[var(--primary-text)]/60'}`}>
                     {step.id}
                   </span>
-                  <span className="text-[10px] font-mono text-white/50 bg-white/[0.05] px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono text-[var(--primary-text)]/50 bg-[var(--primary-black)]/10 px-2 py-0.5 rounded">
                     {step.duration}
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <StepIcon className={`w-6 h-6 ${isActive ? 'text-polaris-blue' : 'text-white/60'}`} />
-                  <h3 className={`font-display font-bold text-lg ${isActive ? 'text-white' : 'text-white/70'}`}>
+                  <StepIcon className={`w-6 h-6 ${isActive ? 'text-[var(--primary-circuit)]' : 'text-[var(--primary-text)]/60'}`} />
+                  <h3 className={`font-display font-bold text-lg ${isActive ? 'text-[var(--primary-text)]' : 'text-[var(--primary-text)]/70'}`}>
                     {step.title}
                   </h3>
                 </div>
 
-                <div className={`w-full h-1 rounded-full transition-all ${isActive ? 'bg-polaris-blue' : 'bg-white/10'}`}></div>
+                <div className={`w-full h-1 rounded-full transition-all ${isActive ? 'bg-[var(--primary-circuit)]' : 'bg-[var(--primary-black)]/10'}`}></div>
               </div>
             );
           })}
         </div>
 
         {/* Detailed Active Step Breakdown Box */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-[#0D0D14] border border-white/10 grid lg:grid-cols-12 gap-8 items-center">
+        <div className="p-8 sm:p-10 rounded-3xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center gap-3">
-              <span className="text-xs font-mono text-polaris-blue bg-polaris-blue/10 px-3 py-1 rounded-full border border-polaris-blue/20">
+              <span className="text-xs font-mono text-[var(--primary-circuit)] bg-[var(--primary-circuit)]/10 px-3 py-1 rounded-full border border-[var(--primary-circuit)]/20">
                 PHASE {steps[activeStep].id} // {steps[activeStep].duration}
               </span>
-              <span className="text-xs font-mono text-polaris-muted">
+              <span className="text-xs font-mono text-[var(--primary-text)]/60">
                 {steps[activeStep].subtitle}
               </span>
             </div>
-            <h3 className="font-display font-bold text-2xl sm:text-3xl text-white">
+            <h3 className="font-display font-bold text-2xl sm:text-3xl text-[var(--primary-text)]">
               {steps[activeStep].title} Phase Blueprint
             </h3>
-            <p className="text-polaris-muted text-base leading-relaxed">
+            <p className="text-[var(--primary-text)]/60 text-base leading-relaxed">
               {steps[activeStep].description}
             </p>
           </div>
 
-          <div className="lg:col-span-5 p-6 rounded-2xl bg-[#060608] border border-white/10 space-y-4">
-            <span className="text-xs font-mono uppercase text-polaris-muted tracking-wider">
+          <div className="lg:col-span-5 p-6 rounded-2xl bg-[var(--primary-black)]/10 border border-[var(--primary-border)]/10 space-y-4">
+            <span className="text-xs font-mono uppercase text-[var(--primary-text)]/60 tracking-wider">
               PHASE DELIVERABLES
             </span>
             <ul className="space-y-3">
               {steps[activeStep].deliverables.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-white/90">
-                  <CheckCircle2 className="w-4 h-4 text-polaris-cyan shrink-0" />
+                <li key={i} className="flex items-center gap-3 text-sm text-[var(--primary-text)]/90">
+                  <CheckCircle2 className="w-4 h-4 text-[var(--primary-signal)] shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

@@ -40,9 +40,9 @@ export default function AiAutomationSection({ onOpenInquiry }) {
   const currentConfig = inputs.find((i) => i.id === activeInput);
 
   return (
-    <section id="ai-systems" className="py-28 px-4 sm:px-8 bg-[#08080E] relative border-y border-white/[0.08] overflow-hidden">
+    <section id="ai-systems" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-y border-[var(--primary-border)]/20 overflow-hidden">
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-polaris-blue/10 blur-[120px] pointer-events-none rounded-full"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--primary-circuit)]/10 blur-[120px] pointer-events-none rounded-full"></div>
 
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         
@@ -55,15 +55,15 @@ export default function AiAutomationSection({ onOpenInquiry }) {
         />
 
         {/* Living Systems Architecture Interactive Canvas */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#0B0B12] border border-white/10 space-y-10 shadow-2xl">
+        <div className="p-8 sm:p-12 rounded-3xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 space-y-10 shadow-2xl">
           
           {/* Top Instruction */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
-            <div className="flex items-center gap-2 text-xs font-mono text-polaris-muted">
-              <Sliders className="w-4 h-4 text-polaris-blue" />
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--primary-border)]/10 pb-6">
+            <div className="flex items-center gap-2 text-xs font-mono text-[var(--primary-text)]/60">
+              <Sliders className="w-4 h-4 text-[var(--primary-circuit)]" />
               <span>SELECT INPUT SOURCE TO SIMULATE SYSTEM PIPELINE:</span>
             </div>
-            <div className="text-xs font-mono text-polaris-cyan">
+            <div className="text-xs font-mono text-[var(--primary-circuit)]">
               REAL-TIME ARCHITECTURE INTERACTION
             </div>
           </div>
@@ -72,13 +72,13 @@ export default function AiAutomationSection({ onOpenInquiry }) {
           <div className="grid lg:grid-cols-4 gap-6 relative">
             
             {/* Step 1: Input Data Source */}
-            <div className="p-6 rounded-2xl bg-[#12121D] border border-white/10 space-y-4 relative">
-              <div className="flex items-center justify-between text-xs font-mono text-polaris-muted">
+            <div className="p-6 rounded-2xl bg-[var(--primary-black)]/20 border border-[var(--primary-border)]/10 space-y-4 relative">
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--primary-text)]/60">
                 <span>01 // INPUT</span>
-                <Database className="w-4 h-4 text-polaris-blue" />
+                <Database className="w-4 h-4 text-[var(--primary-circuit)]" />
               </div>
               <div className="space-y-2">
-                <span className="text-xs font-mono text-polaris-blue">DATA INGESTION</span>
+                <span className="text-xs font-mono text-[var(--primary-circuit)]">DATA INGESTION</span>
                 <div className="space-y-2 pt-2">
                   {inputs.map((item) => (
                     <button
@@ -86,8 +86,8 @@ export default function AiAutomationSection({ onOpenInquiry }) {
                       onClick={() => setActiveInput(item.id)}
                       className={`w-full text-left p-2.5 rounded-lg text-xs font-mono transition-all ${
                         activeInput === item.id
-                          ? 'bg-polaris-blue text-black font-semibold shadow-md'
-                          : 'bg-white/[0.04] text-white/70 hover:bg-white/[0.08] hover:text-white'
+                          ? 'bg-[var(--primary-circuit)] text-[var(--primary-black)] font-semibold shadow-md'
+                          : 'bg-[var(--primary-black)]/10 text-[var(--primary-text)]/70 hover:bg-[var(--primary-black)]/20 hover:text-[var(--primary-text)]'
                       }`}
                     >
                       {item.label}
@@ -100,26 +100,26 @@ export default function AiAutomationSection({ onOpenInquiry }) {
             {/* Connecting Arrow 1 */}
             <div className="hidden lg:flex items-center justify-center">
               <div className="relative w-full flex items-center justify-center">
-                <div className="w-full h-0.5 bg-gradient-to-r from-polaris-blue/40 to-polaris-cyan/40"></div>
-                <div className="absolute w-3 h-3 rounded-full bg-polaris-blue animate-ping"></div>
+                <div className="w-full h-0.5 bg-gradient-to-r from-[var(--primary-circuit)]/40 to-[var(--primary-signal)]/40"></div>
+                <div className="absolute w-3 h-3 rounded-full bg-[var(--primary-circuit)] animate-ping"></div>
               </div>
             </div>
 
             {/* Step 2: Polaris AI Layer */}
-            <div className="p-6 rounded-2xl bg-[#12121D] border border-polaris-blue/40 space-y-4 relative shadow-[0_0_30px_rgba(79,140,255,0.15)]">
-              <div className="flex items-center justify-between text-xs font-mono text-polaris-blue">
+            <div className="p-6 rounded-2xl bg-[var(--primary-black)]/20 border border-[var(--primary-circuit)]/40 space-y-4 relative shadow-[var(--shadow-circuit-0-0-30px-0-15)]">
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--primary-circuit)]">
                 <span>02 // INTELLIGENCE</span>
-                <Bot className="w-4 h-4 text-polaris-blue" />
+                <Bot className="w-4 h-4 text-[var(--primary-circuit)]" />
               </div>
               <div className="space-y-3">
-                <span className="text-xs font-mono text-polaris-cyan">POLARIS AI AGENT</span>
+                <span className="text-xs font-mono text-[var(--primary-signal)]">POLARIS AI AGENT</span>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeInput}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="p-3 rounded-xl bg-white/[0.05] border border-white/10 text-xs font-mono text-white/90 leading-relaxed"
+                    className="p-3 rounded-xl bg-[var(--primary-black)]/10 border border-[var(--primary-border)]/10 text-xs font-mono text-[var(--primary-text)]/90 leading-relaxed"
                   >
                     {currentConfig.aiAction}
                   </motion.div>
@@ -128,20 +128,20 @@ export default function AiAutomationSection({ onOpenInquiry }) {
             </div>
 
             {/* Step 3: Executive Business Outcome */}
-            <div className="p-6 rounded-2xl bg-[#12121D] border border-polaris-cyan/40 space-y-4 relative shadow-[0_0_30px_rgba(76,201,240,0.15)]">
-              <div className="flex items-center justify-between text-xs font-mono text-polaris-cyan">
+            <div className="p-6 rounded-2xl bg-[var(--primary-black)]/20 border border-[var(--primary-signal)]/40 space-y-4 relative shadow-[var(--shadow-circuit-0-0-30px-0-15)]">
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--primary-signal)]">
                 <span>03 // OUTCOME</span>
-                <Zap className="w-4 h-4 text-polaris-cyan" />
+                <Zap className="w-4 h-4 text-[var(--primary-signal)]" />
               </div>
               <div className="space-y-3">
-                <span className="text-xs font-mono text-polaris-muted">AUTOMATED RESULT</span>
+                <span className="text-xs font-mono text-[var(--primary-text)]/60">AUTOMATED RESULT</span>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeInput}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="p-3 rounded-xl bg-polaris-cyan/10 border border-polaris-cyan/30 text-xs font-mono text-polaris-cyan leading-relaxed font-medium"
+                    className="p-3 rounded-xl bg-[var(--primary-black)]/10 border border-[var(--primary-border)]/10 text-xs font-mono text-[var(--primary-text)]/90 leading-relaxed font-medium"
                   >
                     {currentConfig.outcome}
                   </motion.div>
@@ -152,14 +152,14 @@ export default function AiAutomationSection({ onOpenInquiry }) {
           </div>
 
           {/* Bottom Callout */}
-          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-xs font-mono text-white/80">
-              <CheckCircle2 className="w-4 h-4 text-polaris-blue" />
+          <div className="pt-6 border-t border-[var(--primary-border)]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-xs font-mono text-[var(--primary-text)]/80">
+              <CheckCircle2 className="w-4 h-4 text-[var(--primary-circuit)]" />
               <span>SOC2 Compliant Architecture • End-to-End Encryption • Zero Data Retention Available</span>
             </div>
             <button
               onClick={onOpenInquiry}
-              className="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs flex items-center justify-center gap-2 hover:bg-polaris-blue hover:text-white transition-colors"
+              className="px-6 py-3 rounded-full bg-[var(--primary-black)]/10 text-[var(--primary-text)] font-semibold text-xs flex items-center justify-center gap-2 hover:bg-[var(--primary-black)]/20 hover:text-[var(--primary-text)] transition-colors"
             >
               <span>Build Custom AI Architecture</span>
               <ArrowRight className="w-4 h-4" />

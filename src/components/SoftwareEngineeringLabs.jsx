@@ -53,7 +53,7 @@ const SoftwareEngineeringLabs = () => {
               <div className="p-6">
                 <div className="text-4xl mb-4">{lab.icon}</div>
                 <h3 className="text-xl font-semibold mb-2 text-deep-purple">{lab.title}</h3>
-                <p className="text-white/80 leading-relaxed">{lab.description}</p>
+                <p className="text-[var(--primary-text)]/[0.8] leading-relaxed">{lab.description}</p>
               </div>
             </motion.div>
           </motion.div>

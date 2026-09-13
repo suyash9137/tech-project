@@ -40,7 +40,7 @@ export default function PolarisLogo({
         <img
           src="/polaris-logo-navbar.png"
           alt="POLARIS TECHNOLOGIES"
-          className={`${sizeClass} object-contain drop-shadow-[0_0_20px_rgba(79,140,255,0.4)] transition-transform duration-300 hover:scale-[1.02]`}
+          className={`${sizeClass} object-contain drop-shadow-[var(--shadow-circuit-0-0-20px-0-4)] transition-transform duration-300 hover:scale-[1.02]`}
         />
       </div>
     );
@@ -53,7 +53,7 @@ export default function PolarisLogo({
         <img
           src="/polaris-logo-icon.png"
           alt="Polaris Emblem"
-          className={`${sizeClass} object-contain mix-blend-screen drop-shadow-[0_0_15px_rgba(79,140,255,0.5)]`}
+          className={`${sizeClass} object-contain mix-blend-screen drop-shadow-[var(--shadow-circuit-0-0-15px-0-5)]`}
         />
       </div>
     );
@@ -66,7 +66,7 @@ export default function PolarisLogo({
       <img
         src="/polaris-logo-full.png"
         alt="POLARIS TECHNOLOGIES"
-        className={`${sizeClass} object-contain mix-blend-screen drop-shadow-[0_0_20px_rgba(79,140,255,0.4)] transition-transform duration-300 hover:scale-[1.02]`}
+        className={`${sizeClass} object-contain mix-blend-screen drop-shadow-[var(--shadow-circuit-0-0-20px-0-4)] transition-transform duration-300 hover:scale-[1.02]`}
       />
     </div>
   );
