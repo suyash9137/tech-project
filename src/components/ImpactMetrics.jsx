@@ -32,7 +32,7 @@ export default function ImpactMetrics() {
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-8 bg-[var(--primary-slate)] border-y border-[var(--primary-border)]/20 relative">
+    <section className="py-24 px-4 sm:px-8 bg-[var(--primary-slate)] border-y border-white/[0.04] relative">
       <div className="max-w-7xl mx-auto space-y-16">
 
         {/* Animated Section Header */}

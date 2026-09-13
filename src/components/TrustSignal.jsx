@@ -13,7 +13,7 @@ export default function TrustSignal() {
   ];
 
   return (
-    <section className="py-12 border-y border-[var(--primary-border)]/20 bg-[var(--primary-slate)] relative overflow-hidden">
+    <section className="py-12 border-y border-white/[0.04] bg-[var(--primary-slate)] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
 

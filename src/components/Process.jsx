@@ -55,7 +55,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-t border-[var(--primary-border)]/20">
+    <section id="process" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-t border-white/[0.04]">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Animated Section Header */}

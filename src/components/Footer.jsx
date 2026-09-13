@@ -4,7 +4,7 @@ import PolarisLogo from './PolarisLogo';
 
 export default function Footer({ onOpenInquiry }) {
   return (
-    <footer className="bg-[var(--primary-black)] pt-24 pb-12 px-4 sm:px-8 border-t border-[var(--primary-border)]/20 relative overflow-hidden">
+    <footer className="bg-[var(--primary-black)] pt-24 pb-12 px-4 sm:px-8 border-t border-white/[0.04] relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-20">
         
         {/* Top CTA Banner */}

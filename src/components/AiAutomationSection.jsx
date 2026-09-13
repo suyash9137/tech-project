@@ -40,7 +40,7 @@ export default function AiAutomationSection({ onOpenInquiry }) {
   const currentConfig = inputs.find((i) => i.id === activeInput);
 
   return (
-    <section id="ai-systems" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-y border-[var(--primary-border)]/20 overflow-hidden">
+    <section id="ai-systems" className="py-28 px-4 sm:px-8 bg-[var(--primary-black)]/20 relative border-y border-white/[0.04] overflow-hidden">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--primary-circuit)]/10 blur-[120px] pointer-events-none rounded-full"></div>
 

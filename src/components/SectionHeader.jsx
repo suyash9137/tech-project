@@ -20,7 +20,7 @@ export default function SectionHeader({
   const words = title ? title.split(' ') : [];
 
   return (
-    <div className={`space-y-4 pb-8 border-b border-[var(--primary-border)]/[0.08] relative ${className}`}>
+    <div className={`space-y-4 pb-8 border-b border-white/[0.03] relative ${className}`}>
       
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         
@@ -103,7 +103,7 @@ export default function SectionHeader({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: '-20px' }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--primary-circuit)]/[0.6] via-[var(--primary-data)]/[0.4] to-[var(--primary-black)]/[0] origin-left pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-[var(--primary-circuit)]/[0.3] via-[var(--primary-data)]/[0.1] to-transparent origin-left pointer-events-none"
       />
     </div>
   );

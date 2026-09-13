@@ -45,13 +45,13 @@ export default function Header({ onOpenInquiry }) {
   return (
     <>
       {/* Announcement Micro-Bar */}
-      <div className="bg-[var(--primary-black)] border-b border-[var(--primary-border)] text-xs font-mono py-2 px-4 text-center text-[var(--primary-muted)] flex items-center justify-center gap-3">
+      <div className="bg-[var(--primary-black)] border-b border-white/[0.04] text-xs font-mono py-2 px-4 text-center text-[var(--primary-muted)] flex items-center justify-center gap-3">
         <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[var(--primary-circuit)]/10 text-[var(--primary-circuit)] border border-[var(--primary-circuit)]/20">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary-circuit)] animate-pulse"></span>
           STATUS
         </span>
         <span>Now Accepting New Enterprise & Product Engineering Projects</span>
-        <span className="hidden sm:inline text-[var(--primary-text)]/20">|</span>
+        <span className="hidden sm:inline text-[var(--primary-text)]/10">|</span>
         <a
           href="#contact"
           onClick={(e) => { e.preventDefault(); onOpenInquiry(); }}

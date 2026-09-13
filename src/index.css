@@ -11,8 +11,8 @@
   --primary-data: #60EFFF;
   --primary-muted: #60EFFF80;
   --primary-text: #E0E6ED;
-  --primary-border: rgba(255, 255, 255, 0.08);
-  --primary-border-hover: rgba(255, 255, 255, 0.18);
+  --primary-border: rgba(255, 255, 255, 0.04);
+  --primary-border-hover: rgba(255, 255, 255, 0.12);
   --primary-shadow-circuit: rgba(79, 140, 255, 0.15);
   --primary-glow-circuit: rgba(79, 140, 255, 0.3);
   --primary-glow-circuit-strong: rgba(79, 140, 255, 0.8); /* Added for scroll progress */
@@ -49,8 +49,8 @@
   --primary-data: #60EFFF;
   --primary-muted: #60EFFF80;
   --primary-text: #E0E6ED;
-  --primary-border: rgba(255, 255, 255, 0.08);
-  --primary-border-hover: rgba(255, 255, 255, 0.18);
+  --primary-border: rgba(255, 255, 255, 0.04);
+  --primary-border-hover: rgba(255, 255, 255, 0.12);
   --primary-shadow-circuit: rgba(79, 140, 255, 0.15);
   --primary-glow-circuit: rgba(79, 140, 255, 0.3);
   --primary-glow-circuit-strong: rgba(79, 140, 255, 0.8); /* Added for scroll progress */
