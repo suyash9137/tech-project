@@ -86,12 +86,6 @@ export default function Footer({ onOpenInquiry }) {
 
         </div>
 
-        {/* Massive Editorial Wordmark */}
-        <div className="py-12 border-t border-[var(--primary-border)]/10 text-center select-none overflow-hidden">
-          <div className="font-display font-extrabold text-[12vw] sm:text-[14vw] leading-none tracking-tighter text-[var(--primary-text)]/[0.03] uppercase">
-            POLARIS
-          </div>
-        </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-8 border-t border-[var(--primary-border)]/10 text-[var(--primary-text)]/65 font-mono">

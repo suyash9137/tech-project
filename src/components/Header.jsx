@@ -50,7 +50,7 @@ export default function Header({ onOpenInquiry }) {
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary-circuit)] animate-pulse"></span>
           STATUS
         </span>
-        <span>Available for Q3/Q4 Enterprise & Product Engineering</span>
+        <span>Now Accepting New Enterprise & Product Engineering Projects</span>
         <span className="hidden sm:inline text-[var(--primary-text)]/20">|</span>
         <a
           href="#contact"
